@@ -1,0 +1,46 @@
+Config { 
+         font = "xft:ProFont IIx Nerd Font Mono"
+       , additionalFonts = []
+       , border = NoBorder
+       , borderColor = "#E4950E"
+       , bgColor = "#141414"
+       , fgColor = "#FFF8E7"
+       , alpha = 255
+       , position = TopSize C 100 10 
+       , textOffset = -1
+       , iconOffset = -1
+       , lowerOnStart = True
+       , pickBroadest = False
+       , persistent = True
+       , hideOnStart = False
+       , iconRoot = "."
+       , allDesktops = True
+       , overrideRedirect = True
+       , commands = [ Run Weather "SAAR" ["-t","<tempC>C",
+                                          "-L","18","-H","25",
+                                          "--normal","#859900",
+                                          "--high","#E4950E",
+                                          "--low","lightblue"] 36000
+                    , Run Network "eth0" ["-L","0","-H","32",
+                                          "--normal","green","--high","red"] 10
+                    , Run Network "eth1" ["-L","0","-H","32",
+                                          "--normal","green","--high","red"] 10
+                    , Run Cpu ["-L","3","-H","50",
+                               "--normal","#859900","--high","#CB4B16"] 10
+                    , Run Memory ["-t","Mem: <usedratio>%"] 10
+                    , Run Battery ["-t", "<acstatus>: <left>%" ,
+                                   "--",
+                                   --"-c", "charge_full",
+                                   "-O", "AC",
+                                   "-o", "Bat",
+                                   "-h", "green",
+                                   "-l", "red"
+                                      ] 10
+                    , Run Date "%a %_d %b %Y %H:%M:%S" "date" 10
+                    , Run Com "xkb-switch" [] "layout" 10
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "  %cpu% | %memory% }\
+                    \{ <fc=#E4950E> %date% </fc>kb:%layout% %SAAR% "
+       }

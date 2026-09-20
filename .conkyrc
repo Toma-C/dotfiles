@@ -1,0 +1,73 @@
+-- Conky, a system monitor https://github.com/brndnmtthws/conky
+--
+-- This configuration file is Lua code. You can write code in here, and it will
+-- execute when Conky loads. You can use it to generate your own advanced
+-- configurations.
+--
+-- Try this (remove the `--`):
+--
+--   print("Loading Conky config")
+--
+-- For more on Lua, see:
+-- https://www.lua.org/pil/contents.html
+
+conky.config = {
+    alignment = 'top_right',
+    background = true,
+    border_width = 1,
+    cpu_avg_samples = 2,
+    double_buffer = true,
+    draw_borders = false,
+    draw_graph_borders = true,
+    draw_outline = false,
+    draw_shades = false,
+    extra_newline = false,
+    font = 'ProFont IIx Nerd Font Mono:size=12',
+    gap_x = 60,
+    gap_y = 60,
+    minimum_height = 5,
+    minimum_width = 5,
+    net_avg_samples = 2,
+    no_buffers = true,
+    out_to_console = false,
+    out_to_ncurses = false,
+    out_to_stderr = false,
+    out_to_x = true,
+    own_window = true,
+    own_window_class = 'Conky',
+    own_window_type = 'desktop',
+    own_window_transparent = false,
+    own_window_argb_visual = true,
+    own_window_argb_value = 100,
+    own_window_colour = '000000',
+    default_color = '#FFE4950E',
+    default_shade_color = '#E4950E',
+    default_outline_color = '#E4950E',
+    show_graph_range = false,
+    show_graph_scale = false,
+    stippled_borders = 0,
+    update_interval = 1.0,
+    uppercase = false,
+    use_spacer = 'none',
+    use_xft = true,
+}
+
+conky.text = [[
+$color$hr
+${execi 1 date '+%H %M %S' | sed 's/^/  /' | sed 's/$/  /' | figlet -W -f Calvin\ S} 
+$hr
+${color grey}RAM:$color $memperc% ${goto 100} ${membar 4}
+${color grey}CPU:$color $cpu%     ${goto 100} ${cpubar 4}
+${color grey}Processes:$color $processes  ${color grey}Running:$color $running_processes
+$hr
+$color${fs_used /}/${fs_size /} ${fs_bar 6 /}
+$color${fs_used /media/tomac/33e8aec3-083e-4542-ad71-2a60c43cdb30}/${fs_size /media/tomac/33e8aec3-083e-4542-ad71-2a60c43cdb30} ${fs_bar 6 /media/}
+$hr
+${if_mpd_playing}
+${mpd_artist}
+${scroll left 25 1 ${mpd_album}}
+${scroll left 25 1 ${mpd_title}}
+${mpd_bar}
+$hr
+${endif}
+]]
