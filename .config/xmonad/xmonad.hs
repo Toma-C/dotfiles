@@ -360,7 +360,7 @@ myStartupHook = do
   spawnOnce "nitrogen --restore & "
   spawnOnce "conky"
   spawnOnce "xinput set-prop 13 341 0 1 0"
-  spawnOnce "openrgb --startminimized --config /home/tomac/.config/OpenRGB --profile \"tomac.orp\" "
+  spawnOnce "openrgb -p tomac.orp"
 
 
 
